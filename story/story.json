@@ -616,7 +616,7 @@
 		}
 	],
 	"settings": {
-		"defaultTickLength": 1,
+		"defaultTickLength": 40,
 		"skipRevisitedScenes": true
 	}
 }
