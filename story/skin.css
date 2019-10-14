@@ -1,0 +1,243 @@
+/*
+
+ALL OF THIS IS NECESSARY FOR MAKING THE TEXT ADVENTURE LOOK THE WAY IT DOES.
+If you know what you're doing, then by all means, modify it to your heart's content.
+
+I use custom tags because I don't want these styles to affect the rest of the document,
+and I don't want the rest of the document's styles to affect these.
+Also, I just think that the fact that you can do this is *really cool*.
+
+Maybe I should divide this into "functional" CSS vs. "graphical" CSS at some point, idk
+
+*/
+
+jw-story {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	/* Grow if needed, shrink if needed, base size on own size */
+	color: black;
+	font-family: Trixie;
+	font-size: 20px;
+	/* So that 100% means 100% */
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	background-image: url(images/paper-texture.png);
+	border: 2px solid black;
+	padding: .25em 1em;
+	margin: 0;
+	/* Add scrollbar if the story overflows the container */
+	overflow: auto;
+}
+
+/* If the screen width is less than 444px... */
+@media screen and (max-width: 444px) {
+	jw-story {
+		font-size: 18px;
+	}
+}
+
+jw-story jw-story-text {
+	display: block;
+}
+
+/* Designing the highlight effects is fun */
+
+/* Grimbis */
+jw-story jw-story-highlight[type="1"] {
+	color: black;
+	font-weight: bold;
+	text-shadow: .2em .2em .1em darkgray;
+}
+
+/* Gawyn */
+jw-story jw-story-highlight[type="2"] {
+	color: crimson;
+	font-variant: small-caps;
+	font-weight: bold;
+	letter-spacing: .1em;
+}
+
+/* the orb */
+jw-story jw-story-highlight[type="3"] {
+	color: darkorange;
+	font-weight: bold;
+}
+
+/* the fungus */
+jw-story jw-story-highlight[type="4"] {
+	color: darkseagreen;
+	font-style: italic;
+	font-weight: bold;
+}
+
+/* the knife */
+jw-story jw-story-highlight[type="5"] {
+	color: gray;
+	font-weight: bold;
+	text-shadow: 0 0 .07em black;
+	letter-spacing: .03em;
+}
+
+/* the key */
+jw-story jw-story-highlight[type="6"] {
+	color: slategray;
+	text-shadow: 0 0 .12em saddlebrown;
+}
+
+/* the moonbeam */
+jw-story jw-story-highlight[type="7"] {
+	color: steelblue;
+	font-weight: bold;
+	text-shadow: .2em .2em .1em lightsteelblue;
+	letter-spacing: .1em;
+}
+
+/* the rope */
+jw-story jw-story-highlight[type="8"] {
+	color: saddlebrown;
+	text-decoration: tan underline overline dashed;
+}
+
+/* The effects are also fun, but I don't know where else besides this page I'd use them */
+/* For HTML-injection reasons, I have to disable them until HTML stops being injected */
+/* Which is a pain */
+
+jw-effect {
+	display: inline-block;
+}
+
+jw-effect[type="flicker"] {
+	animation: flicker 3s ease infinite;
+}
+
+@keyframes flicker {
+	0%, 100% { opacity: 1; }
+	3% { opacity: .2; }
+	6% { opacity: 1; }
+	21% { opacity: 1; }
+	25% { opacity: .2; }
+	29% { opacity: 1; }
+	52% { opacity: 1; }
+	57% { opacity: .2; }
+	62% { opacity: 1; }
+	75% { opacity: 1; }
+	78% { opacity: .4; }
+	81% { opacity: 1; }
+	85% { opacity: .4; }
+	89% { opacity: 1; }
+}
+
+jw-effect[type="glow"] {
+	text-shadow: 0 0 .2em cyan;
+	animation: glow 2s ease infinite;
+}
+
+@keyframes glow {
+	0%, 100% {
+		text-shadow: 0 0 .2em cyan;
+	}
+	50% {
+		text-shadow: 0 0 .2em cyan, 0 0 .4em cyan, 0 0 .6em cyan;
+	}
+}
+
+jw-effect[type="rainbow"] {
+	animation: rainbow 2s ease infinite;
+}
+
+@keyframes rainbow {
+	0%, 100% { color: maroon; }
+	17% { color: saddlebrown; }
+	33% { color: olive; }
+	50% { color: darkgreen; }
+	67% { color: darkslateblue; }
+	83% { color: indigo; }
+}
+
+jw-effect[type="shake"] {
+	animation: shake .2s ease infinite;
+}
+
+@keyframes shake {
+	0%, 100% {
+		transform: translate(0, 0) rotate(0deg);
+	}
+	20% {
+		transform: translate(.04em, .08em) rotate(.5deg);
+	}
+	40% {
+		transform: translate(-.06em, .06em) rotate(1.5deg);
+	}
+	60% {
+		transform: translate(.06em, -.06em) rotate(-.5deg);
+	}
+	80% {
+		transform: translate(-.08em, .04em) rotate(.75deg);
+	}
+}
+
+jw-effect[disabled] {
+	animation: none;
+}
+
+jw-story jw-story-choice-list {
+	display: block;
+	/* 1 - .5em indent for the first line, 1em indent for the rest */
+	padding-left: 1em;
+	text-indent: -.5em;
+	margin: 1em 0;
+}
+
+jw-story-choice {
+	color: dodgerblue;
+	width: -moz-fit-content;
+	width: fit-content;
+	filter: brightness(100%);
+	transition: filter .2s ease;
+}
+
+jw-story jw-story-choice-list jw-story-choice {
+	display: block;
+	font-weight: bolder;
+}
+
+/* On non-mobile browsers... */
+@media not all and (pointer: coarse) {
+	jw-story-choice:hover:not([disabled]) {
+		filter: brightness(140%);
+		cursor: pointer;
+	}
+}
+
+jw-story jw-story-inv:before {
+	content: "Inventory:";
+	font-size: .9em;
+	font-weight: bold;
+}
+
+jw-story jw-story-inv {
+	display: block;
+	/* Don't grow, don't shrink, base size on own size */
+	flex: 0 0 auto;
+}
+
+jw-story jw-story-inv-list {
+	display: block;
+	font-size: .8em;
+	max-width: 80%;
+	margin: 1em 0;
+	padding-left: 2em;
+	list-style: disc outside none;
+}
+
+jw-story jw-story-inv-list:empty:after {
+	content: "Nothing";
+}
+
+jw-story jw-story-inv-item {
+	display: list-item;
+	width: -moz-fit-content;
+	width: fit-content;
+}

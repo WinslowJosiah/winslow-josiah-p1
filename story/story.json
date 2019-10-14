@@ -1,0 +1,622 @@
+{
+	"name": "4K Adventure",
+	"items": [
+		{
+			"name": "orb",
+			"text": "Gawyn's orb",
+			"seenText": "You see the [s3]orb[/s3][pause 20].",
+			"description": "The orb shimmers in unnatural colors.",
+			"equippable": true
+		},
+		{
+			"name": "fungus",
+			"text": "odd fungus",
+			"seenText": "You see an odd [s4]fungus[/s4].[pause 20]",
+			"description": "An unusual gray fungus.",
+			"equippable": true,
+			"scene": "cavern"
+		},
+		{
+			"name": "knife",
+			"text": "knife",
+			"seenText": "You see a [s5]knife[/s5][pause 20].",
+			"equipText": "Pick up the knife",
+			"unequipText": "Drop the knife",
+			"description": "The knife is sharp and not rusted by the brook.",
+			"equippable": true
+		},
+		{
+			"name": "key",
+			"text": "small key",
+			"seenText": "You see a small [s6]key[/s6][pause 20].",
+			"equipText": "Pick up the key",
+			"unequipText": "Drop the key",
+			"description": "A tiny silver key engraved with the initials BB.",
+			"equippable": true,
+			"scene": "poolOfWater"
+		},
+		{
+			"name": "moonbeam",
+			"text": "moonbeam frozen in ice",
+			"seenText": "You see the [s7]moonbeam[/s7][pause 20].",
+			"description": "A moonbeam trapped in a shard of ice. It shines with a cold silvery light.",
+			"equippable": true
+		},
+		{
+			"name": "boatExamined",
+			"hidden": true
+		},
+		{
+			"name": "brookExamined",
+			"hidden": true
+		},
+		{
+			"name": "bushExamined",
+			"hidden": true
+		},
+		{
+			"name": "doorOpen",
+			"hidden": true
+		},
+		{
+			"name": "enteredMeadowWithMoonbeamOnce",
+			"hidden": true
+		},
+		{
+			"name": "iceMelted",
+			"hidden": true
+		},
+		{
+			"name": "iciclesExamined",
+			"hidden": true
+		},
+		{
+			"name": "pebblesExamined",
+			"hidden": true
+		}
+	],
+	"scenes": [
+		{
+			"name": "intro",
+			"text": [
+				"Welcome to 4K Adventure.[pause 20]",
+				"In this game you are [s1]Grimbis[/s1], a black dwarf in the employ of [s2]Gawyn, the Lord of All Realms[/s2].[pause 15] Treasonous elves have stolen the [s3]magical orb[/s3] which [s2]Gawyn[/s2] needs to keep the land in eternal winter.[pause 20]",
+				"You must recover the [s3]orb[/s3]."
+			],
+			"nextScene": "forestDepths"
+		},
+		{
+			"name": "brook",
+			"text": "By the murmuring brook whose clear waters flow [speed .2]slowly[/speed] southwards.[pause 20]",
+			"canEquipItems": true,
+			"choices": [
+				{
+					"name": "examinePebbles",
+					"text": "Examine the pebbles",
+					"requirement": "items.brookExamined.owned",
+					"itemActions": [
+						{
+							"action": "place",
+							"name": "knife",
+							"scene": "brook",
+							"requirement": "!items.pebblesExamined.owned"
+						}
+					],
+					"nextScene": "brook-examinePebbles"
+				},
+				{
+					"name": "examineBrook",
+					"text": "Examine the brook",
+					"nextScene": "brook-examineBrook"
+				},
+				{
+					"name": "east",
+					"text": "Go east",
+					"itemActions": [
+						{
+							"action": "add",
+							"name": "iceMelted",
+							"requirement": "items.enteredMeadowWithMoonbeamOnce.owned && items.moonbeam.owned"
+						},
+						{
+							"action": "add",
+							"name": "enteredMeadowWithMoonbeamOnce",
+							"requirement": "!items.enteredMeadowWithMoonbeamOnce.owned"
+						}
+					],
+					"nextScene": "summerMeadow"
+				}
+			],
+			"itemActions": [
+				{
+					"action": "add",
+					"name": "enteredMeadowWithMoonbeamOnce",
+					"requirement": "items.moonbeam.owned && thisScene == nextScene"
+				},
+				{
+					"action": "remove",
+					"name": "enteredMeadowWithMoonbeamOnce",
+					"requirement": "(!items.moonbeam.owned && thisScene == nextScene) || items.iceMelted.owned"
+				},
+				{
+					"action": "remove",
+					"name": "moonbeam",
+					"requirement": "items.iceMelted.owned"
+				}
+			]
+		},
+		{
+			"name": "brook-examineBrook",
+			"text": "Through the crystal-clear waters you see [effect rainbow]pebbles and stones[/effect] of many different colors.",
+			"itemActions": [
+				{
+					"action": "add",
+					"name": "brookExamined"
+				}
+			],
+			"nextScene": "brook"
+		},
+		{
+			"name": "brook-examinePebbles",
+			"text": "[if !items.pebblesExamined.owned]Hidden in the [effect rainbow]pebbles[/effect] at the bottom of the brook you find a lost [s5]knife[/s].[/if][if items.pebblesExamined.owned]The [effect rainbow]pebbles[/effect] [effect shake]tremor[/effect] slightly as the water flows over them.[/if]",
+			"itemActions": [
+				{
+					"action": "add",
+					"name": "pebblesExamined"
+				}
+			],
+			"nextScene": "brook"
+		},
+		{
+			"name": "summerMeadow",
+			"text": [
+				"In a summer meadow full of tall grasses and wild summer flowers.[pause 20]",
+				"The clear blue sky seems full of butterflies and bumble bees.[pause 15] To the [choice west]west[/choice] the meadow falls slowly down to a murmuring brook.[pause 20]",
+				"[if items.iceMelted.owned]The [s7]ice shard[/s7] melts in the summer air.[/if]"
+			],
+			"canEquipItems": true,
+			"choices": [
+				{
+					"name": "south",
+					"text": "Go south",
+					"itemActions": [
+						{
+							"action": "remove",
+							"name": "enteredMeadowWithMoonbeamOnce"
+						}
+					],
+					"nextScene": "doorInWall"
+				},
+				{
+					"name": "west",
+					"text": "Go west",
+					"nextScene": "brook"
+				}
+			],
+			"itemActions": [
+				{
+					"action": "remove",
+					"name": "iceMelted",
+					"requirement": "items.iceMelted.owned"
+				},
+				{
+					"action": "add",
+					"name": "iceMelted",
+					"requirement": "items.enteredMeadowWithMoonbeamOnce.owned && thisScene==nextScene"
+				},
+				{
+					"action": "remove",
+					"name": "enteredMeadowWithMoonbeamOnce",
+					"requirement": "items.iceMelted.owned"
+				},
+				{
+					"action": "remove",
+					"name": "moonbeam",
+					"requirement": "items.iceMelted.owned"
+				}
+			]
+		},
+		{
+			"name": "doorInWall",
+			"text": [
+				"A place in the forest where the trees grow so closely,[pause 15] the snow has not yet covered the brown earth.[pause 20]",
+				"A door stands to the north in the crumbling remains of a wall.[pause 20]"
+			],
+			"canEquipItems": true,
+			"choices": [
+				{
+					"name": "openDoor",
+					"text": "Open the door",
+					"requirement": "!items.doorOpen.owned && items.key.owned",
+					"nextScene": "doorInWall-doorOpening"
+				},
+				{
+					"name": "north",
+					"text": "Go north",
+					"requirement": "items.doorOpen.owned",
+					"itemActions": [
+						{
+							"action": "add",
+							"name": "enteredMeadowWithMoonbeamOnce",
+							"requirement": "items.moonbeam.owned"
+						}
+					],
+					"nextScene": "summerMeadow"
+				},
+				{
+					"name": "south",
+					"text": "Go south",
+					"nextScene": "forestDepths"
+				},
+				{
+					"name": "east",
+					"text": "Go east",
+					"nextScene": "windyTrack"
+				}
+			]
+		},
+		{
+			"name": "doorInWall-doorOpening",
+			"text": [
+				"The door [effect shake]creaks[/effect] open.[pause 20]",
+				"Through the door you see a summery meadow.[pause 20]"
+			],
+			"itemActions": [
+				{
+					"action": "add",
+					"name": "doorOpen"
+				}
+			],
+			"nextScene": "doorInWall"
+		},
+		{
+			"name": "windyTrack",
+			"text": [
+				"On a windy track near the edge of the forest.[pause 20]",
+				"The leafless trees frown at the gently falling snow and think about times long ago.[pause 20]",
+				"To the north stands a huge [choice examineBush]holly bush[/choice].[pause 20]"
+
+			],
+			"canEquipItems": true,
+			"choices": [
+				{
+					"name": "examineBush",
+					"text": "Examine the holly bush",
+					"itemActions": [
+						{
+							"action": "place",
+							"name": "orb",
+							"scene": "windyTrack",
+							"requirement": "!items.bushExamined.owned"
+						}
+					],
+					"nextScene": "windyTrack-examineBush"
+				},
+				{
+					"name": "south",
+					"text": "Go south",
+					"nextScene": "clearing"
+				},
+				{
+					"name": "east",
+					"text": "Go east",
+					"nextScene": "easternEdge"
+				},
+				{
+					"name": "west",
+					"text": "Go west",
+					"nextScene": "doorInWall"
+				}
+			]
+		},
+		{
+			"name": "windyTrack-examineBush",
+			"text": "[if !items.bushExamined.owned]Hidden in the holly bush you find [s2]Gawyn[/s2]'s [s3]orb[/s3].[/if][if items.bushExamined.owned]The holly leaves are the only greenery in the forest.[/if][pause 20]",
+			"itemActions": [
+				{
+					"action": "add",
+					"name": "bushExamined"
+				}
+			],
+			"nextScene": "windyTrack"
+		},
+		{
+			"name": "easternEdge",
+			"text": [
+				"By the eastern edge of a dark gloomy forest.[pause 20]",
+				"The [effect glow]moonlight[/effect] dances slowly in the thin [choice examineIcicles]icicles[/choice] to the soft singing of the breeze.[pause 15] Across the marshland to the [choice north]north[/choice] you see distant hills silhouetted against a cold gray sky.[pause 20]"
+			],
+			"canEquipItems": true,
+			"choices": [
+				{
+					"name": "examineIcicles",
+					"text": "Examine the icicles",
+					"itemActions": [
+						{
+							"action": "place",
+							"name": "moonbeam",
+							"scene": "easternEdge",
+							"requirement": "!items.iciclesExamined.owned"
+						}
+					],
+					"nextScene": "easternEdge-examineIcicles"
+				},
+				{
+					"name": "north",
+					"text": "Go north",
+					"nextScene": "easternEdge-marshes"
+				},
+				{
+					"name": "west",
+					"text": "Go west",
+					"nextScene": "windyTrack"
+				}
+			]
+		},
+		{
+			"name": "easternEdge-examineIcicles",
+			"text": "[if !items.iciclesExamined.owned]Among the delicate [effect glow]icicles[/effect] there is a moonbeam, trapped in a shard of ice.[/if][if items.iciclesExamined.owned]The [effect glow]icicles[/effect] sparkle enchantingly.[/if]",
+			"itemActions": [
+				{
+					"action": "add",
+					"name": "iciclesExamined"
+				}
+			],
+			"nextScene": "easternEdge"
+		},
+		{
+			"name": "easternEdge-marshes",
+			"text": "The marshes are [effect shake]treacherous[/effect] on winter nights.",
+			"nextScene": "easternEdge"
+		},
+		{
+			"name": "westRiverBank",
+			"text": [
+				"In shallow [effect glow]water[/effect] on the west of the river Burre.[pause 20]",
+				"Through the trees to the [choice west]west[/choice] you can see Gawyn's tower.[pause 20]"
+
+			],
+			"canEquipItems": true,
+			"choices": [
+				{
+					"name": "east",
+					"text": "Go east",
+					"nextScene": "westRiverBank-icyWaters"
+				},
+				{
+					"name": "west",
+					"text": "Go west",
+					"nextScene": "ending"
+				}
+			]
+		},
+		{
+			"name": "westRiverBank-icyWaters",
+			"text": "The [effect glow]icy waters[/effect] flow swiftly.",
+			"nextScene": "westRiverBank"
+		},
+		{
+			"name": "eastRiverBank",
+			"text": [
+				"Surrounded by bushes on the east bank of the river Burre.[pause 20]",
+				"Over the [effect glow]icy waters[/effect] you can see the [effect flicker]flickering[/effect] of a distant light.[pause 15] A small [choice examineBoat]boat[/choice] similar to a coracle is tied here.[pause 20]"
+			],
+			"canEquipItems": true,
+			"choices": [
+				{
+					"name": "cutRope",
+					"text": "Cut the rope",
+					"requirement": "items.boatExamined.owned && items.knife.owned",
+					"nextScene": "eastRiverBank-cutRope"
+				},
+				{
+					"name": "examineBoat",
+					"text": "Examine the boat",
+					"itemActions": [
+						{
+							"action": "add",
+							"name": "boatExamined"
+						}
+					],
+					"nextScene": "eastRiverBank-examineBoat"
+				},
+				{
+					"name": "east",
+					"text": "Go east",
+					"nextScene": "forestDepths"
+				},
+				{
+					"name": "west",
+					"text": "Go west",
+					"nextScene": "eastRiverBank-icyWaters"
+				}
+			]
+		},
+		{
+			"name": "eastRiverBank-cutRope",
+			"text": [
+				"The [s5]knife[/s] cuts through the [s8]rope[/s] easily.[pause 20]",
+				"You jump into the boat just as it slowly begins to float away.[pause 15] With some difficulty you guide the boat across the river."
+			],
+			"nextScene": "westRiverBank"
+		},
+		{
+			"name": "eastRiverBank-examineBoat",
+			"text": "The boat is tied to a strong post with a [s8]rope[/s] that appears to have shrunk over time and can't be untied.",
+			"nextScene": "eastRiverBank"
+		},
+		{
+			"name": "eastRiverBank-icyWaters",
+			"text": "The [effect glow]icy waters[/effect] flow swiftly.",
+			"nextScene": "eastRiverBank"
+		},
+		{
+			"name": "forestDepths",
+			"text": [
+				"In the depths of the forest.[pause 20]",
+				"The falling snow swirls around the old ash trees playfully.[pause 15] Sounds of water can be heard through the bushes to the [choice west]west[/choice].[pause 20]"
+			],
+			"canEquipItems": true,
+			"choices": [
+				{
+					"name": "north",
+					"text": "Go north",
+					"nextScene": "doorInWall"
+				},
+				{
+					"name": "east",
+					"text": "Go east",
+					"nextScene": "clearing"
+				},
+				{
+					"name": "west",
+					"text": "Go west",
+					"nextScene": "eastRiverBank"
+				}
+			]
+		},
+		{
+			"name": "clearing",
+			"text": [
+				"In a snowy forest clearing.[pause 20]",
+				"The wintery skies are filled with dark clouds and falling snow.[pause 20]"
+			],
+			"canEquipItems": true,
+			"choices": [
+				{
+					"name": "north",
+					"text": "Go north",
+					"nextScene": "windyTrack"
+				},
+				{
+					"name": "south",
+					"text": "Go south",
+					"nextScene": "caveEntrance"
+				},
+				{
+					"name": "west",
+					"text": "Go west",
+					"nextScene": "forestDepths"
+				}
+			]
+		},
+		{
+			"name": "caveEntrance",
+			"text": [
+				"At the entrance to a prominent fissure cave.[pause 20]",
+				"To the [choice east]east[/choice] the passage disappears into darkness.[pause 20]",
+				"[if !items.moonbeam.owned]The forbidding darkness looms menacingly from the fissure.[pause 20][/if]"
+			],
+			"canEquipItems": true,
+			"choices": [
+				{
+					"name": "north",
+					"text": "Go north",
+					"nextScene": "clearing"
+				},
+				{
+					"name": "east",
+					"text": "Go east",
+					"requirement": "items.moonbeam.owned",
+					"nextScene": "fissure"
+				}
+			]
+		},
+		{
+			"name": "fissure",
+			"text": [
+				"In the darkness of the fissure.[pause 20]",
+				"The narrow passage rises to a high aven far above you. To the [choice west]west[/choice] you see the dark night sky outside the cave. Further [choice east]east[/choice], the passage widens."
+			],
+			"canEquipItems": true,
+			"choices": [
+				{
+					"name": "south",
+					"text": "Go south",
+					"nextScene": "poolOfWater"
+				},
+				{
+					"name": "east",
+					"text": "Go east",
+					"nextScene": "cavern"
+				},
+				{
+					"name": "west",
+					"text": "Go west",
+					"nextScene": "caveEntrance"
+				}
+			]
+		},
+		{
+			"name": "cavern",
+			"text": "The passage ends in a cavern of huge boulders resembling an ancient battlefield.",
+			"canEquipItems": true,
+			"choices": [
+				{
+					"name": "north",
+					"text": "Go north",
+					"nextScene": "cavern-fallenBoulders"
+				},
+				{
+					"name": "south",
+					"text": "Go south",
+					"nextScene": "cavern-fallenBoulders"
+				},
+				{
+					"name": "east",
+					"text": "Go east",
+					"nextScene": "cavern-fallenBoulders"
+				},
+				{
+					"name": "west",
+					"text": "Go west",
+					"nextScene": "fissure"
+				}
+			]
+		},
+		{
+			"name": "cavern-fallenBoulders",
+			"text": "Fallen boulders prevent you going that way.",
+			"nextScene": "cavern"
+		},
+		{
+			"name": "poolOfWater",
+			"text": [
+				"By a pool of [choice examinePool]icy cold water[/choice] in a low-roofed chamber.[pause 20]",
+				"A squeeze between boulders to the [choice north]north[/choice] leads back into the main passage."
+			],
+			"canEquipItems": true,
+			"choices": [
+				{
+					"name": "examinePool",
+					"text": "Look into the pool",
+					"nextScene": "poolOfWater-examinePool"
+				},
+				{
+					"name": "north",
+					"text": "Go north",
+					"nextScene": "fissure"
+				}
+			]
+		},
+		{
+			"name": "poolOfWater-examinePool",
+			"text": "Reflected in the [effect glow]pool[/effect] you see yourself, a trustworthy [s1]black dwarf[/s].",
+			"nextScene": "poolOfWater"
+		},
+		{
+			"name": "ending",
+			"text": [
+				"[if !items.orb.owned]You enter [s2]Gawyn[/s]'s tower without the [s3]orb[/s].[/if]",
+				"[if !items.orb.owned]He isn't going to be very happy, and if he is in a particularly bad mood, you might spend a few days as a statue.[/if]",
+				"[if items.orb.owned]You have done well.[/if]",
+				"[if items.orb.owned][s2]Gawyn[/s]'s [s3]orb[/s] has been returned and you have earned a bonus of [eval]items.fungus.owned*11 + items.knife.owned*2 + items.key.owned*24 + items.moonbeam.owned*35[/eval] gold coins for the items you have collected.[/if]"
+			],
+			"isEnding": true
+		}
+	],
+	"settings": {
+		"defaultTickLength": 1,
+		"skipRevisitedScenes": true
+	}
+}

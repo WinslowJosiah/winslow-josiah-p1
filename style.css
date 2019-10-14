@@ -1,0 +1,87 @@
+@font-face {
+	font-family: Trixie;
+	src: url("trixie.woff") format("woff");
+}
+
+/* Mostly color definitions */
+:root {
+	--amethyst: #af50c6;
+	--chetwode-blue: #858ee0;
+	--desert-storm: #f7f7f6;
+	--rock: #4d3d37;
+	--sandrift: #b2957b;
+	--santa-fe: #b07959;
+	--tumbleweed: #daab7e;
+	
+	--a-color: var(--chetwode-blue);
+	--a-hover-color: var(--desert-storm);
+	--a-visited-color: var(--amethyst);
+	
+	--body-background-color: var(--rock);
+	
+	--hr-color: var(--santa-fe);
+}
+
+/* Common styles for pretty much everything */
+body {
+	background-color: var(--body-background-color);
+	/* Most of the page will have sans-serif fonts, which look good */
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 16px;
+}
+
+/* Make this the size, shape, and position you want the story to be */
+#story-container {
+	width: 70vw;
+	max-width: 700px;
+	height: 70vh;
+	margin: 20px auto;
+}
+
+hr {
+	border: 2px solid var(--hr-color);
+	margin: 1.5em 0;
+}
+
+a {
+	color: var(--a-color);
+	filter: brightness(100%);
+	transition: filter .5s ease;
+}
+
+a:visited {
+	color: var(--a-visited-color);
+}
+
+/* On non-mobile browsers... */
+@media not all and (pointer: coarse) {
+	a:hover {
+		filter: brightness(130%);
+	}
+}
+
+address {
+	line-height: 1.5em;
+}
+
+jw-icon {
+	width: 1.5em;
+	height: 1.5em;
+	vertical-align: middle;
+}
+
+jw-icon[type="github"] {
+	content: url(images/github.png);
+}
+
+jw-icon[type="gmail"] {
+	content: url(images/gmail.png);
+}
+
+jw-icon[type="itchio"] {
+	content: url(images/itchio.png);
+}
+
+jw-icon[type="twitter"] {
+	content: url(images/twitter.png);
+}

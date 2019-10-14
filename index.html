@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>story.js</title>
+		
+		<!-- Sometimes I need to include this early, so I do it out of habit -->
+		<meta charset="utf-8">
+		
+		<!-- Favicon -->
+		<link id="favicon" rel="icon" type="image/ico" href="images/favicon.ico" sizes="16x16" />
+		
+		<!-- CSS (Cascading Style Sheets) files -->
+		<link rel="stylesheet" href="style.css">
+		<!-- This stylesheet acts as a "skin" for the story -->
+		<link rel="stylesheet" href="story/skin.css">
+		
+		<!-- JavaScript files -->
+		<!-- Run the text adventure -->
+		<script src="scripts/story.js"></script>
+		<script src="https://unpkg.com/popper.js@1"></script>
+		<script src="https://unpkg.com/tippy.js@5"></script>
+		
+		<!-- Meta tags -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="My first project in Web Programming with Scripts.">
+		<meta name="keywords" content="web, programming, with, scripts">
+		<!-- Noscript functionality, just in case -->
+		<style>
+			.no-script {
+				display: none;
+			}
+		</style>
+		<noscript>
+			<style>
+				.yes-script {
+					display: none;
+				}
+				.no-script {
+					display: initial;
+				}
+			</style>
+		</noscript>
+	</head>
+	<body>
+		<div id="story-container">
+			<!-- Apparently, custom tags just *work* like this -->
+			<jw-story>
+				<jw-story-text>
+					<p>This is <jw-effect type="rainbow">rainbow-y</jw-effect>!</p>
+					<p>This is <jw-story-highlight type="7">highlighted</jw-story-highlight>!</p>
+					<p>What do you do?</p>
+				</jw-story-text>
+				<jw-story-choice-list>
+					<jw-story-choice choose="choice1">Choose this choice!</jw-story-choice>
+					<jw-story-choice choose="choice2">No, choose this one!</jw-story-choice>
+				</jw-story-choice-list>
+				<jw-story-inv>
+					<jw-story-inv-list></jw-story-inv-list>
+				</jw-story-inv>
+			<!--
+			-->
+			</jw-story>
+		</div>
+		<footer>
+			<hr>
+			<address>
+				<jw-icon type="gmail"></jw-icon> <a href="mailto:winslowjosiah@gmail.com">winslowjosiah@gmail.com</a>
+				<br>
+				<jw-icon type="twitter"></jw-icon> <a href="https://twitter.com/WinslowJosiah">@WinslowJosiah</a>
+				<br>
+				<jw-icon type="github"></jw-icon> <a href="https://github.com/winslowjosiah">WinslowJosiah</a>
+				<br>
+				<jw-icon type="itchio"></jw-icon> <a href="https://winslowjosiah.itch.io">Josiah Winslow</a>
+			</address>
+		</footer>
+	</body>
+</html>
