@@ -85,3 +85,10 @@ jw-icon[type="itchio"] {
 jw-icon[type="twitter"] {
 	content: url(images/twitter.png);
 }
+
+/* If the screen width is less than 444px... */
+@media screen and (max-width: 444px) {
+	footer {
+		display: none;
+	}
+}
