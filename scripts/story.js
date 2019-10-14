@@ -725,7 +725,6 @@ class UI {
 // Global story data
 storyData = {
 	story: null,
-	choices: null,
 	printedText: "",
 	printer: {
 		fullText: "",
