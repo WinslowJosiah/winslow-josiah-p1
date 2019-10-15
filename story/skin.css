@@ -15,7 +15,6 @@ jw-story {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	/* Grow if needed, shrink if needed, base size on own size */
 	color: black;
 	font-family: Trixie;
 	font-size: 20px;
