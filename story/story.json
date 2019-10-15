@@ -4,14 +4,14 @@
 		{
 			"name": "orb",
 			"text": "Gawyn's orb",
-			"seenText": "You see the [s3]orb[/s3][pause 20].",
+			"seenText": "You see the [s3]orb[/s][pause 20].",
 			"description": "The orb shimmers in unnatural colors.",
 			"equippable": true
 		},
 		{
 			"name": "fungus",
 			"text": "odd fungus",
-			"seenText": "You see an odd [s4]fungus[/s4].[pause 20]",
+			"seenText": "You see an odd [s4]fungus[/s].[pause 20]",
 			"description": "An unusual gray fungus.",
 			"equippable": true,
 			"scene": "cavern"
@@ -19,7 +19,7 @@
 		{
 			"name": "knife",
 			"text": "knife",
-			"seenText": "You see a [s5]knife[/s5][pause 20].",
+			"seenText": "You see a [s5]knife[/s][pause 20].",
 			"equipText": "Pick up the knife",
 			"unequipText": "Drop the knife",
 			"description": "The knife is sharp and not rusted by the brook.",
@@ -28,7 +28,7 @@
 		{
 			"name": "key",
 			"text": "small key",
-			"seenText": "You see a small [s6]key[/s6][pause 20].",
+			"seenText": "You see a small [s6]key[/s][pause 20].",
 			"equipText": "Pick up the key",
 			"unequipText": "Drop the key",
 			"description": "A tiny silver key engraved with the initials BB.",
@@ -38,7 +38,7 @@
 		{
 			"name": "moonbeam",
 			"text": "moonbeam frozen in ice",
-			"seenText": "You see the [s7]moonbeam[/s7][pause 20].",
+			"seenText": "You see the [s7]moonbeam[/s][pause 20].",
 			"description": "A moonbeam trapped in a shard of ice. It shines with a cold silvery light.",
 			"equippable": true
 		},
@@ -80,8 +80,8 @@
 			"name": "intro",
 			"text": [
 				"Welcome to 4K Adventure.[pause 20]",
-				"In this game you are [s1]Grimbis[/s1], a black dwarf in the employ of [s2]Gawyn, the Lord of All Realms[/s2].[pause 15] Treasonous elves have stolen the [s3]magical orb[/s3] which [s2]Gawyn[/s2] needs to keep the land in eternal winter.[pause 20]",
-				"You must recover the [s3]orb[/s3]."
+				"In this game you are [s1]Grimbis[/s], a black dwarf in the employ of [s2]Gawyn, the Lord of All Realms[/s].[pause 15] Treasonous elves have stolen the [s3]magical orb[/s] which [s2]Gawyn[/s] needs to keep the land in eternal winter.[pause 20]",
+				"You must recover the [s3]orb[/s]."
 			],
 			"nextScene": "forestDepths"
 		},
@@ -172,7 +172,7 @@
 			"text": [
 				"In a summer meadow full of tall grasses and wild summer flowers.[pause 20]",
 				"The clear blue sky seems full of butterflies and bumble bees.[pause 15] To the [choice west]west[/choice] the meadow falls slowly down to a murmuring brook.[pause 20]",
-				"[if items.iceMelted.owned]The [s7]ice shard[/s7] melts in the summer air.[/if]"
+				"[if items.iceMelted.owned]The [s7]ice shard[/s] melts in the summer air.[/if]"
 			],
 			"canEquipItems": true,
 			"choices": [
@@ -311,7 +311,7 @@
 		},
 		{
 			"name": "windyTrack-examineBush",
-			"text": "[if !items.bushExamined.owned]Hidden in the holly bush you find [s2]Gawyn[/s2]'s [s3]orb[/s3].[/if][if items.bushExamined.owned]The holly leaves are the only greenery in the forest.[/if][pause 20]",
+			"text": "[if !items.bushExamined.owned]Hidden in the holly bush you find [s2]Gawyn[/s]'s [s3]orb[/s].[/if][if items.bushExamined.owned]The holly leaves are the only greenery in the forest.[/if][pause 20]",
 			"itemActions": [
 				{
 					"action": "add",
