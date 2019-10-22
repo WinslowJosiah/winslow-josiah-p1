@@ -4,7 +4,7 @@
 		{
 			"name": "orb",
 			"text": "Gawyn's orb",
-			"seenText": "You see the [s3]orb[/s][pause 20].",
+			"seenText": "You see the [s3]orb[/s].[pause 20]",
 			"description": "The orb shimmers in unnatural colors.",
 			"equippable": true
 		},
@@ -19,7 +19,7 @@
 		{
 			"name": "knife",
 			"text": "knife",
-			"seenText": "You see a [s5]knife[/s][pause 20].",
+			"seenText": "You see a [s5]knife[/s].[pause 20]",
 			"equipText": "Pick up the knife",
 			"unequipText": "Drop the knife",
 			"description": "The knife is sharp and not rusted by the brook.",
@@ -28,7 +28,7 @@
 		{
 			"name": "key",
 			"text": "small key",
-			"seenText": "You see a small [s6]key[/s][pause 20].",
+			"seenText": "You see a small [s6]key[/s].[pause 20]",
 			"equipText": "Pick up the key",
 			"unequipText": "Drop the key",
 			"description": "A tiny silver key engraved with the initials BB.",
@@ -38,7 +38,7 @@
 		{
 			"name": "moonbeam",
 			"text": "moonbeam frozen in ice",
-			"seenText": "You see the [s7]moonbeam[/s][pause 20].",
+			"seenText": "You see the [s7]moonbeam[/s].[pause 20]",
 			"description": "A moonbeam trapped in a shard of ice. It shines with a cold silvery light.",
 			"equippable": true
 		},
